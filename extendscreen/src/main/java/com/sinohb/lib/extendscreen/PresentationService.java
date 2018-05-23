@@ -84,7 +84,8 @@ public abstract class PresentationService extends Service implements
   @Override
   public void onDestroy() {
     helper.onPause();
-
+    helper.onDisplayRemoved(0);
+    helper.disable();
     super.onDestroy();
   }
 
@@ -130,7 +131,7 @@ public abstract class PresentationService extends Service implements
    * @return a window type (e.g., TYPE_TOAST)
    */
   protected int getWindowType() {
-    return(Build.VERSION.SDK_INT<=Build.VERSION_CODES.N ?
+    return(Build.VERSION.SDK_INT<=24?
       WindowManager.LayoutParams.TYPE_TOAST :
       WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
   }
