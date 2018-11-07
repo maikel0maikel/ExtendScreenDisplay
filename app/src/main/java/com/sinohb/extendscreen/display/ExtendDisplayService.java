@@ -1,25 +1,31 @@
 package com.sinohb.extendscreen.display;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 
 import com.sinohb.extendscreen.display.video.VideoController;
 import com.sinohb.extendscreen.display.video.VideoPresenter;
+import com.sinohb.lib.extendscreen.PresentationService;
 
-public class MainActivity extends AppCompatActivity implements SurfaceHolder.Callback,BaseView{
+public class ExtendDisplayService extends PresentationService implements SurfaceHolder.Callback,BaseView{
     private SurfaceView mSurfaceView;
     private VideoPresenter mPresenter;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_video);
-        startService(new Intent(this,ExtendDisplayService.class));
-//        new VideoController(this);
-//        mSurfaceView = (SurfaceView) findViewById(R.id.video_sv);
-//        mSurfaceView.getHolder().addCallback(this);
+    protected int getThemeId() {
+        return R.style.PlayTheme;
+    }
+
+    @Override
+    protected View buildPresoView(Context context, LayoutInflater layoutInflater) {
+        View mRootView = layoutInflater.inflate(R.layout.fragment_video, null);
+        mSurfaceView = (SurfaceView) mRootView.findViewById(R.id.video_sv);
+        new VideoController(this);
+        mSurfaceView.getHolder().addCallback(this);
+        return mSurfaceView;
     }
 
     @Override

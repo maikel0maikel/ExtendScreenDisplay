@@ -5,6 +5,9 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven {
+            url "https://raw.githubusercontent.com/maikel0maikel/ExtendScreenDisplay/master"
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.1'
@@ -19,6 +22,9 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven {
+            url "https://raw.githubusercontent.com/maikel0maikel/ExtendScreenDisplay/master"
+        }
     }
 }
 
